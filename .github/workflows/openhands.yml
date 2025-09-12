@@ -30,8 +30,6 @@ jobs:
           git config --global user.name "OpenHands Bot"
           git config --global user.email "bot@openhands.ai"
 
-      - name: Debug OpenHands CLI
+      - name: Run OpenHands agent
         run: |
-          echo "=== OPENHANDS HELP START ==="
-          openhands --help || true
-          echo "=== OPENHANDS HELP END ==="
+          openhands cli -t "Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input."
