@@ -24,21 +24,26 @@ jobs:
           pip install --upgrade pip
           pip install git+https://github.com/All-Hands-AI/OpenHands.git
 
-      - name: Add OpenHands config
+      - name: Add OpenHands config (JSON format)
         run: |
           mkdir -p .openhands
-          cat > .openhands/config.yaml << 'EOF'
-          llm:
-            provider: "openhands"
-            model: "default"
-          workspace:
-            base: "."
-          agent:
-            name: "TikTokAgent"
+          cat > .openhands/config.json << 'EOF'
+          {
+            "llm": {
+              "provider": "openhands",
+              "model": "default"
+            },
+            "workspace": {
+              "base": "."
+            },
+            "agent": {
+              "name": "TikTokAgent"
+            }
+          }
           EOF
 
       - name: Run OpenHands
         run: |
           openhands cli \
-            --config-file .openhands/config.yaml \
+            --config-file .openhands/config.json \
             -t "Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input."
