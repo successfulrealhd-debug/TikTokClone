@@ -1,0 +1,10 @@
+[llm]
+provider = "anthropic"
+model = "claude-3-sonnet-20240229"
+api_key = "${{ secrets.ANTHROPIC_API_KEY }}"
+
+[workspace]
+base = "/github/workspace"
+
+[agent]
+mode = "autonomous"
