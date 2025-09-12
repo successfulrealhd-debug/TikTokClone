@@ -6,44 +6,38 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
   run-openhands:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
+          python-version: '3.12'
 
       - name: Install OpenHands
         run: |
+          pip install --upgrade pip
           pip install git+https://github.com/All-Hands-AI/OpenHands.git
-
-      - name: Configure git
-        run: |
-          git config --global user.name "OpenHands Bot"
-          git config --global user.email "bot@openhands.ai"
 
       - name: Add OpenHands config
         run: |
           mkdir -p .openhands
           cat > .openhands/config.yaml << 'EOF'
           llm:
-            provider: openhands
-            model: default
+            provider: "openhands"
+            model: "default"
           workspace:
-            base: .
+            base: "."
           agent:
             name: "TikTokAgent"
           EOF
 
-      - name: Run OpenHands agent
+      - name: Run OpenHands
         run: |
           openhands cli \
             --config-file .openhands/config.yaml \
