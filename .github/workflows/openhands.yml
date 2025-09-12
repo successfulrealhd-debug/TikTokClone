@@ -45,4 +45,6 @@ jobs:
 
       - name: Run OpenHands agent
         run: |
-          openhands cli -t "Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input."
+          openhands cli \
+            --config-file .openhands/config.yaml \
+            -t "Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input."
