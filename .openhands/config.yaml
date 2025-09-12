@@ -1,0 +1,7 @@
+llm:
+  provider: openhands
+  model: default
+workspace:
+  base: .
+agent:
+  name: "TikTokAgent"
