@@ -1,0 +1,35 @@
+name: OpenHands AutoCoder
+
+on:
+  workflow_dispatch:   # allows manual trigger
+  push:                # runs when you push changes
+    branches:
+      - main
+
+jobs:
+  run-openhands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git
+          git clone https://github.com/All-Hands-AI/OpenHands.git
+          cd OpenHands
+          pip install -r requirements.txt
+          pip install -e .
+          cd ..
+
+      - name: Run OpenHands agent
+        run: |
+          python -m openhands --repo . --goal "
+          Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input.
+          "
