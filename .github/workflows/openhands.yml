@@ -1,0 +1,30 @@
+name: OpenHands AutoCoder
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run-openhands:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install OpenHands
+        run: |
+          pip install openhands
+
+      - name: Run OpenHands AutoCoder
+        run: |
+          openhands cli \
+            -t "Continue building the TikTok-style PWA, troubleshoot errors, commit working changes, and push updates automatically so Vercel deploy previews succeed. Work hands-free without manual input." \
+            --config-file .openhands/config.toml
