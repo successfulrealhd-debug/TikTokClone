@@ -1,0 +1,9 @@
+[llm]
+provider = "ollama"
+model = "qwen3:8b"   # use qwen3:8b for coding tasks
+temperature = 0.2
+
+[llm.chat]
+provider = "ollama"
+model = "qwen3:4b"   # lighter model for chat / planning
+temperature = 0.7
