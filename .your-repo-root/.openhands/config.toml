@@ -1,9 +1,19 @@
+# OpenHands local config for free + offline use with Ollama
+# Place this file in: .openhands/config.toml
+
+[core]
+workspace_base = "./workspace"
+
 [llm]
 provider = "ollama"
-model = "qwen3:8b"   # use qwen3:8b for coding tasks
-temperature = 0.2
+model = "qwen3:8b"
+api_base = "http://localhost:11434"   # Ollama default server
 
-[llm.chat]
-provider = "ollama"
-model = "qwen3:4b"   # lighter model for chat / planning
-temperature = 0.7
+[coding]
+enabled = true
+auto_commit = true
+commit_message = "OpenHands AutoCoder update"
+
+[chat]
+enabled = true
+system_prompt = "You are OpenHands, an autonomous coder. Generate complete solutions, not snippets."
